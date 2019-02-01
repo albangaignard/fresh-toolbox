@@ -1,0 +1,805 @@
+@base <http://snakemake-provenance> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix sioc: <http://rdfs.org/sioc/ns#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sym:   <http://fr.symetric/vocab#> .
+@prefix crypto: <http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<:gaignard-a> a prov:Agent, prov:Person . 
+
+<> 
+	a prov:Bundle, prov:Entity;
+	prov:wasAttributedTo <:gaignard-a>;
+	prov:generatedAtTime "2019-01-23T15:27:59.432330"^^xsd:dateTime.
+
+<http://snakemake-provenance#activity-b4d8e563-f04c-47cf-b2a6-b979d47c11ce>
+	a prov:Activity ;
+	rdfs:comment """
+		gunzip -k ../testdata/human_g1k_v37.chr22.fasta.gz
+	""" ;
+	prov:wasAssociatedWith <#unzipGenome> ;
+	prov:startedAtTime "2019-01-23T15:27:59.653033"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.653041"^^xsd:dateTime; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta.gz> ; 
+.
+
+<../testdata/human_g1k_v37.chr22.fasta>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-b4d8e563-f04c-47cf-b2a6-b979d47c11ce>;
+	prov:wasAssociatedWith <#unzipGenome> ;
+	rdfs:label "../testdata/human_g1k_v37.chr22.fasta"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta.gz> ; 
+.
+
+<http://snakemake-provenance#activity-78d70234-8fd0-47c0-aa23-4144f66c7b10>
+	a prov:Activity ;
+	prov:wasAssociatedWith <#downloadGATK> ;
+	prov:startedAtTime "2019-01-23T15:27:59.654284"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.654294"^^xsd:dateTime; 
+.
+
+<gatkPresent.txt>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-78d70234-8fd0-47c0-aa23-4144f66c7b10>;
+	prov:wasAssociatedWith <#downloadGATK> ;
+	rdfs:label "gatkPresent.txt"; 
+.
+
+<http://snakemake-provenance#activity-a79831dc-95d4-46c3-b2ae-3db862c56796>
+	a prov:Activity ;
+	rdfs:comment """
+		samtools faidx ../testdata/human_g1k_v37.chr22.fasta
+	""" ;
+	prov:wasAssociatedWith <#genomeIndex> ;
+	prov:startedAtTime "2019-01-23T15:27:59.656028"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.656037"^^xsd:dateTime; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+.
+
+<../testdata/human_g1k_v37.chr22.fasta.fai>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-a79831dc-95d4-46c3-b2ae-3db862c56796>;
+	prov:wasAssociatedWith <#genomeIndex> ;
+	rdfs:label "../testdata/human_g1k_v37.chr22.fasta.fai"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+.
+
+<http://snakemake-provenance#activity-098dcde3-e9da-4c38-bd49-a508fa4e82db>
+	a prov:Activity ;
+	rdfs:comment """
+		bwa index -a bwtsw ../testdata/human_g1k_v37.chr22.fasta
+	""" ;
+	prov:wasAssociatedWith <#bwaIndex> ;
+	prov:startedAtTime "2019-01-23T15:27:59.657741"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.657752"^^xsd:dateTime; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+.
+
+<../testdata/human_g1k_v37.chr22.fasta.bwt>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-098dcde3-e9da-4c38-bd49-a508fa4e82db>;
+	prov:wasAssociatedWith <#bwaIndex> ;
+	rdfs:label "../testdata/human_g1k_v37.chr22.fasta.bwt"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+.
+
+<http://snakemake-provenance#activity-fb9c7950-0b6d-4402-a9d4-1b7c31f1b290>
+	a prov:Activity ;
+	rdfs:comment """
+		picard CreateSequenceDictionary REFERENCE=../testdata/human_g1k_v37.chr22.fasta OUTPUT=../testdata/human_g1k_v37.chr22.dict
+	""" ;
+	prov:wasAssociatedWith <#genomeDictionary> ;
+	prov:startedAtTime "2019-01-23T15:27:59.659530"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.659540"^^xsd:dateTime; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+.
+
+<../testdata/human_g1k_v37.chr22.dict>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-fb9c7950-0b6d-4402-a9d4-1b7c31f1b290>;
+	prov:wasAssociatedWith <#genomeDictionary> ;
+	rdfs:label "../testdata/human_g1k_v37.chr22.dict"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+.
+
+<http://snakemake-provenance#activity-e5a4336a-3495-4821-9bd2-24d444b61637>
+	a prov:Activity ;
+	rdfs:comment """
+		bwa mem -t 1 -M 		-H '@CO\tProject:test Sample:Sample1 Date:2019-01-23 CWD:/Users/gaignard-a/Documents/Dev/exome-provenance/exome-pipeline/output Capture:{ name : captureName , description : exome capture test chr22 , path : ../testdata/Broad.human.exome.b37.chr22.bed}' 		-R '@RG\tID:Sample1\tLB:Sample1\tSM:Sample1\tPL:Illumina\tCN:CENTER' 		../testdata/human_g1k_v37.chr22.fasta ../testdata/Sample1_ATGCCTAA_L001_R1_001.fastq.gz ../testdata/Sample1_ATGCCTAA_L001_R2_001.fastq.gz > Samples/Sample1/BAM/Sample1.p1.aligned.sam
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/bwa_cloudifb> ;
+	prov:startedAtTime "2019-01-23T15:27:59.661594"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.661606"^^xsd:dateTime; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/Sample1_ATGCCTAA_L001_R1_001.fastq.gz> ; 
+	prov:used <../testdata/Sample1_ATGCCTAA_L001_R2_001.fastq.gz> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta.bwt> ; 
+.
+
+<Samples/Sample1/BAM/Sample1.p1.aligned.sam>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-e5a4336a-3495-4821-9bd2-24d444b61637>;
+	prov:wasAssociatedWith <https://bio.tools/bwa_cloudifb> ;
+	rdfs:label "Samples/Sample1/BAM/Sample1.p1.aligned.sam"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/Sample1_ATGCCTAA_L001_R1_001.fastq.gz> ; 
+	prov:wasDerivedFrom <../testdata/Sample1_ATGCCTAA_L001_R2_001.fastq.gz> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta.bwt> ; 
+.
+
+<http://snakemake-provenance#activity-91c40a1e-45f0-47c2-a19d-3e6d47d993ed>
+	a prov:Activity ;
+	rdfs:comment """
+		tr -d '\r' < ../testdata/Broad.human.exome.b37.chr22.bed | grep -v '^browser'  | grep -v '^track' | cut -f1,2,3 | sed 's/^chr//' | LC_ALL=C sort -t '	' -k1,1 -k2,2n -k3,3n | bedtools merge | bedtools sort -faidx ../testdata/human_g1k_v37.chr22.fasta.fai > BED/capture.bed
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/bedtools_mergebedgraph-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.663524"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.663534"^^xsd:dateTime; 
+	prov:used <../testdata/Broad.human.exome.b37.chr22.bed> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta.fai> ; 
+.
+
+<BED/capture.bed>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-91c40a1e-45f0-47c2-a19d-3e6d47d993ed>;
+	prov:wasAssociatedWith <https://bio.tools/bedtools_mergebedgraph-ip> ;
+	rdfs:label "BED/capture.bed"; 
+	prov:wasDerivedFrom <../testdata/Broad.human.exome.b37.chr22.bed> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta.fai> ; 
+.
+
+<http://snakemake-provenance#activity-b4de3b83-1cc6-4f48-ad48-540d300cf703>
+	a prov:Activity ;
+	rdfs:comment """
+		samtools sort --reference ../testdata/human_g1k_v37.chr22.fasta -l 9 -@ 1 -O bam -o Samples/Sample1/BAM/Sample1.p1.sorted.bam -T Samples/Sample1/BAM/Sample1.p1.sorted.bam.tmp Samples/Sample1/BAM/Sample1.p1.aligned.sam
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/samtools_sort-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.665147"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.665156"^^xsd:dateTime; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta.fai> ; 
+	prov:used <Samples/Sample1/BAM/Sample1.p1.aligned.sam> ; 
+.
+
+<Samples/Sample1/BAM/Sample1.p1.sorted.bam>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-b4de3b83-1cc6-4f48-ad48-540d300cf703>;
+	prov:wasAssociatedWith <https://bio.tools/samtools_sort-ip> ;
+	rdfs:label "Samples/Sample1/BAM/Sample1.p1.sorted.bam"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta.fai> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.p1.aligned.sam> ; 
+.
+
+<http://snakemake-provenance#activity-133b295b-41ad-40d1-be31-3d9f1821e220>
+	a prov:Activity ;
+	rdfs:comment """
+		bedtools slop -b 1000 -g ../testdata/human_g1k_v37.chr22.fasta.fai -i BED/capture.bed | LC_ALL=C sort -t '	' -k1,1 -k2,2n -k3,3n | bedtools merge -d 1000 | bedtools sort -faidx ../testdata/human_g1k_v37.chr22.fasta.fai > BED/capture.extended1000.bed
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/bedtools_mergebedgraph-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.666734"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.666747"^^xsd:dateTime; 
+	prov:used <BED/capture.bed> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta.fai> ; 
+.
+
+<BED/capture.extended1000.bed>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-133b295b-41ad-40d1-be31-3d9f1821e220>;
+	prov:wasAssociatedWith <https://bio.tools/bedtools_mergebedgraph-ip> ;
+	rdfs:label "BED/capture.extended1000.bed"; 
+	prov:wasDerivedFrom <BED/capture.bed> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta.fai> ; 
+.
+
+<http://snakemake-provenance#activity-1df41f0b-a86f-41eb-95cf-cd41c2cb9a85>
+	a prov:Activity ;
+	prov:wasAssociatedWith <https://bio.tools/picard_tools> ;
+	prov:startedAtTime "2019-01-23T15:27:59.668077"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.668091"^^xsd:dateTime; 
+	prov:used <Samples/Sample1/BAM/Sample1.p1.sorted.bam> ; 
+.
+
+<Samples/Sample1/BAM/Sample1.merged.bam>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-1df41f0b-a86f-41eb-95cf-cd41c2cb9a85>;
+	prov:wasAssociatedWith <https://bio.tools/picard_tools> ;
+	rdfs:label "Samples/Sample1/BAM/Sample1.merged.bam"; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.p1.sorted.bam> ; 
+.
+
+<Samples/Sample1/BAM/Sample1.merged.bai>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-1df41f0b-a86f-41eb-95cf-cd41c2cb9a85>;
+	prov:wasAssociatedWith <https://bio.tools/picard_tools> ;
+	rdfs:label "Samples/Sample1/BAM/Sample1.merged.bai"; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.p1.sorted.bam> ; 
+.
+
+<http://snakemake-provenance#activity-d41f5a7f-5523-487f-b092-8be4c1b7b42f>
+	a prov:Activity ;
+	rdfs:comment """
+		picard MarkDuplicates -Xmx5g TMP_DIR=Samples/Sample1/BAM MAX_RECORDS_IN_RAM=1000000 COMPRESSION_LEVEL=9 AS=true PG=PMD  VALIDATION_STRINGENCY=SILENT CREATE_INDEX=true O=Samples/Sample1/BAM/Sample1.markdup.bam I=Samples/Sample1/BAM/Sample1.merged.bam M=Samples/Sample1/QC/Sample1.markdup.metrics
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/markduplicates_ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.670370"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.670380"^^xsd:dateTime; 
+	prov:used <Samples/Sample1/BAM/Sample1.merged.bam> ; 
+	prov:used <Samples/Sample1/BAM/Sample1.merged.bai> ; 
+.
+
+<Samples/Sample1/QC/Sample1.markdup.metrics>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-d41f5a7f-5523-487f-b092-8be4c1b7b42f>;
+	prov:wasAssociatedWith <https://bio.tools/markduplicates_ip> ;
+	rdfs:label "Samples/Sample1/QC/Sample1.markdup.metrics"; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.merged.bam> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.merged.bai> ; 
+.
+
+<Samples/Sample1/BAM/Sample1.markdup.bam>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-d41f5a7f-5523-487f-b092-8be4c1b7b42f>;
+	prov:wasAssociatedWith <https://bio.tools/markduplicates_ip> ;
+	rdfs:label "Samples/Sample1/BAM/Sample1.markdup.bam"; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.merged.bam> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.merged.bai> ; 
+.
+
+<Samples/Sample1/BAM/Sample1.markdup.bai>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-d41f5a7f-5523-487f-b092-8be4c1b7b42f>;
+	prov:wasAssociatedWith <https://bio.tools/markduplicates_ip> ;
+	rdfs:label "Samples/Sample1/BAM/Sample1.markdup.bai"; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.merged.bam> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.merged.bai> ; 
+.
+
+<http://snakemake-provenance#activity-dde929a6-b8c0-42a7-a051-f02a370a07ab>
+	a prov:Activity ;
+	rdfs:comment """
+		gatk -Djava.io.tmpdir=Samples/Sample1/BAM -Xmx5g -T RealignerTargetCreator 		-nt 1 		-R ../testdata/human_g1k_v37.chr22.fasta 		-L:capture,BED BED/capture.extended1000.bed 		-I Samples/Sample1/BAM/Sample1.markdup.bam 		-o Samples/Sample1/BAM/Sample1.realign.intervals 		--known:onekindels,VCF ../testdata/1000G_phase1.indels.b37.chr22.recode.vcf.gz 		--known:millsindels,VCF ../testdata/Mills_and_1000G_gold_standard.indels.b37.chr22.recode.vcf.gz 		-S SILENT
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_realigner_target_creator-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.672255"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.672264"^^xsd:dateTime; 
+	prov:used <Samples/Sample1/BAM/Sample1.markdup.bam> ; 
+	prov:used <../testdata/1000G_phase1.indels.b37.chr22.recode.vcf.gz> ; 
+	prov:used <gatkPresent.txt> ; 
+	prov:used <Samples/Sample1/BAM/Sample1.markdup.bai> ; 
+	prov:used <BED/capture.extended1000.bed> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/Mills_and_1000G_gold_standard.indels.b37.chr22.recode.vcf.gz> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.dict> ; 
+.
+
+<Samples/Sample1/BAM/Sample1.realign.intervals>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-dde929a6-b8c0-42a7-a051-f02a370a07ab>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_realigner_target_creator-ip> ;
+	rdfs:label "Samples/Sample1/BAM/Sample1.realign.intervals"; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.markdup.bam> ; 
+	prov:wasDerivedFrom <../testdata/1000G_phase1.indels.b37.chr22.recode.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.markdup.bai> ; 
+	prov:wasDerivedFrom <BED/capture.extended1000.bed> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/Mills_and_1000G_gold_standard.indels.b37.chr22.recode.vcf.gz> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+.
+
+<http://snakemake-provenance#activity-6fc46366-474b-4cc6-8e69-fbb54c014881>
+	a prov:Activity ;
+	rdfs:comment """
+		gatk -Djava.io.tmpdir=Samples/Sample1/BAM -XX:ParallelGCThreads=5 -Xmx2g -T IndelRealigner 		-R ../testdata/human_g1k_v37.chr22.fasta 		--bam_compression 9 		-I Samples/Sample1/BAM/Sample1.markdup.bam 		-o Samples/Sample1/BAM/Sample1.realign.bam 		-targetIntervals Samples/Sample1/BAM/Sample1.realign.intervals 		-known:onekindels,VCF ../testdata/1000G_phase1.indels.b37.chr22.recode.vcf.gz 		-known:millsindels,VCF ../testdata/Mills_and_1000G_gold_standard.indels.b37.chr22.recode.vcf.gz 		-S SILENT
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_indel_realigner-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.674176"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.674187"^^xsd:dateTime; 
+	prov:used <Samples/Sample1/BAM/Sample1.markdup.bam> ; 
+	prov:used <../testdata/1000G_phase1.indels.b37.chr22.recode.vcf.gz> ; 
+	prov:used <gatkPresent.txt> ; 
+	prov:used <Samples/Sample1/BAM/Sample1.markdup.bai> ; 
+	prov:used <Samples/Sample1/BAM/Sample1.realign.intervals> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/Mills_and_1000G_gold_standard.indels.b37.chr22.recode.vcf.gz> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.dict> ; 
+.
+
+<Samples/Sample1/BAM/Sample1.realign.bam>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-6fc46366-474b-4cc6-8e69-fbb54c014881>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_indel_realigner-ip> ;
+	rdfs:label "Samples/Sample1/BAM/Sample1.realign.bam"; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.markdup.bam> ; 
+	prov:wasDerivedFrom <../testdata/1000G_phase1.indels.b37.chr22.recode.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.markdup.bai> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.realign.intervals> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/Mills_and_1000G_gold_standard.indels.b37.chr22.recode.vcf.gz> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+.
+
+<Samples/Sample1/BAM/Sample1.realign.bai>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-6fc46366-474b-4cc6-8e69-fbb54c014881>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_indel_realigner-ip> ;
+	rdfs:label "Samples/Sample1/BAM/Sample1.realign.bai"; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.markdup.bam> ; 
+	prov:wasDerivedFrom <../testdata/1000G_phase1.indels.b37.chr22.recode.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.markdup.bai> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.realign.intervals> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/Mills_and_1000G_gold_standard.indels.b37.chr22.recode.vcf.gz> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+.
+
+<http://snakemake-provenance#activity-b28835ac-68b5-4082-8c4a-5eed5794d445>
+	a prov:Activity ;
+	rdfs:comment """
+		gatk -Djava.io.tmpdir=Samples/Sample1/BAM -XX:ParallelGCThreads=5 -Xmx2g -T BaseRecalibrator 		-nct 1 		-R ../testdata/human_g1k_v37.chr22.fasta 		--validation_strictness LENIENT 		-I Samples/Sample1/BAM/Sample1.realign.bam 		-l INFO 		-o Samples/Sample1/BAM/Sample1.recal.table 		-knownSites:dbsnp,VCF ../testdata/dbsnp_138.b37.chr22.recode.vcf.gz 		-L:capture,BED BED/capture.extended1000.bed 		-cov QualityScoreCovariate 		-cov CycleCovariate 		-cov ContextCovariate
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_base_recalibrator-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.676076"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.676086"^^xsd:dateTime; 
+	prov:used <BED/capture.extended1000.bed> ; 
+	prov:used <../testdata/dbsnp_138.b37.chr22.recode.vcf.gz> ; 
+	prov:used <gatkPresent.txt> ; 
+	prov:used <Samples/Sample1/BAM/Sample1.realign.bai> ; 
+	prov:used <Samples/Sample1/BAM/Sample1.realign.bam> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.dict> ; 
+.
+
+<Samples/Sample1/BAM/Sample1.recal.table>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-b28835ac-68b5-4082-8c4a-5eed5794d445>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_base_recalibrator-ip> ;
+	rdfs:label "Samples/Sample1/BAM/Sample1.recal.table"; 
+	prov:wasDerivedFrom <BED/capture.extended1000.bed> ; 
+	prov:wasDerivedFrom <../testdata/dbsnp_138.b37.chr22.recode.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.realign.bai> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.realign.bam> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+.
+
+<http://snakemake-provenance#activity-c7088668-7613-43c4-a6ed-9a10b163b0de>
+	a prov:Activity ;
+	rdfs:comment """
+		gatk -Djava.io.tmpdir=Samples/Sample1/BAM -XX:ParallelGCThreads=5 -Xmx4g -T PrintReads 		-nct 1 		-R ../testdata/human_g1k_v37.chr22.fasta 		--bam_compression 9 		-BQSR Samples/Sample1/BAM/Sample1.recal.table 		--disable_indel_quals 		-I Samples/Sample1/BAM/Sample1.realign.bam 		-o Samples/Sample1/BAM/Sample1.final.bam 		--validation_strictness LENIENT 		-l INFO
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_print_reads-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.677938"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.677947"^^xsd:dateTime; 
+	prov:used <Samples/Sample1/BAM/Sample1.realign.bam> ; 
+	prov:used <Samples/Sample1/BAM/Sample1.recal.table> ; 
+	prov:used <Samples/Sample1/BAM/Sample1.realign.bai> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:used <gatkPresent.txt> ; 
+.
+
+<Samples/Sample1/BAM/Sample1.final.bam>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-c7088668-7613-43c4-a6ed-9a10b163b0de>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_print_reads-ip> ;
+	rdfs:label "Samples/Sample1/BAM/Sample1.final.bam"; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.realign.bam> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.recal.table> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.realign.bai> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+.
+
+<Samples/Sample1/BAM/Sample1.final.bai>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-c7088668-7613-43c4-a6ed-9a10b163b0de>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_print_reads-ip> ;
+	rdfs:label "Samples/Sample1/BAM/Sample1.final.bai"; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.realign.bam> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.recal.table> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.realign.bai> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+.
+
+<http://snakemake-provenance#activity-c17a6f7a-d53d-4c53-a523-b03f23b46fda>
+	a prov:Activity ;
+	rdfs:comment """
+		gatk -Djava.io.tmpdir=Samples/Sample1/VCF -XX:ParallelGCThreads=5 -Xmx3g -T HaplotypeCaller 		-R ../testdata/human_g1k_v37.chr22.fasta 		--emitRefConfidence GVCF 		-variant_index_type LINEAR 		-variant_index_parameter 128000 		-stand_call_conf 30.0 		-nct 1 		-rf ReadLength 		-minRead 0 		-maxRead 10000 		-S SILENT 		-L:capture,BED BED/capture.extended1000.bed 		-I Samples/Sample1/BAM/Sample1.final.bam 		--dbsnp:dbsnp,VCF ../testdata/dbsnp_138.b37.chr22.recode.vcf.gz 		-o Samples/Sample1/VCF/Sample1.hapcaller.g.vcf
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_haplotype_caller-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.679684"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.679692"^^xsd:dateTime; 
+	prov:used <Samples/Sample1/BAM/Sample1.final.bam> ; 
+	prov:used <../testdata/dbsnp_138.b37.chr22.recode.vcf.gz> ; 
+	prov:used <gatkPresent.txt> ; 
+	prov:used <Samples/Sample1/BAM/Sample1.final.bai> ; 
+	prov:used <BED/capture.extended1000.bed> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.dict> ; 
+.
+
+<Samples/Sample1/VCF/Sample1.hapcaller.g.vcf.idx>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-c17a6f7a-d53d-4c53-a523-b03f23b46fda>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_haplotype_caller-ip> ;
+	rdfs:label "Samples/Sample1/VCF/Sample1.hapcaller.g.vcf.idx"; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.final.bam> ; 
+	prov:wasDerivedFrom <../testdata/dbsnp_138.b37.chr22.recode.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.final.bai> ; 
+	prov:wasDerivedFrom <BED/capture.extended1000.bed> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+.
+
+<Samples/Sample1/VCF/Sample1.hapcaller.g.vcf>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-c17a6f7a-d53d-4c53-a523-b03f23b46fda>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_haplotype_caller-ip> ;
+	rdfs:label "Samples/Sample1/VCF/Sample1.hapcaller.g.vcf"; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.final.bam> ; 
+	prov:wasDerivedFrom <../testdata/dbsnp_138.b37.chr22.recode.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <Samples/Sample1/BAM/Sample1.final.bai> ; 
+	prov:wasDerivedFrom <BED/capture.extended1000.bed> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+.
+
+<http://snakemake-provenance#activity-dffb82c2-0053-4969-b6bc-f0b8b64985a7>
+	a prov:Activity ;
+	prov:wasAssociatedWith <#createGVCFList> ;
+	prov:startedAtTime "2019-01-23T15:27:59.680855"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.680865"^^xsd:dateTime; 
+	prov:used <Samples/Sample1/VCF/Sample1.hapcaller.g.vcf> ; 
+.
+
+<VCF/gvcf.list>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-dffb82c2-0053-4969-b6bc-f0b8b64985a7>;
+	prov:wasAssociatedWith <#createGVCFList> ;
+	rdfs:label "VCF/gvcf.list"; 
+	prov:wasDerivedFrom <Samples/Sample1/VCF/Sample1.hapcaller.g.vcf> ; 
+.
+
+<http://snakemake-provenance#activity-df1e815f-8dd4-4493-85b9-a26a8a2ca7ad>
+	a prov:Activity ;
+	rdfs:comment """
+		gatk -Djava.io.tmpdir=VCF -XX:ParallelGCThreads=3 -Xmx10g -T CombineGVCFs 		-R ../testdata/human_g1k_v37.chr22.fasta 		--variant VCF/gvcf.list 		-S SILENT 		-o VCF/hapcaller.combined.g.vcf.gz
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_combine-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.682431"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.682442"^^xsd:dateTime; 
+	prov:used <VCF/gvcf.list> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:used <gatkPresent.txt> ; 
+.
+
+<VCF/hapcaller.combined.g.vcf.gz.tbi>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-df1e815f-8dd4-4493-85b9-a26a8a2ca7ad>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_combine-ip> ;
+	rdfs:label "VCF/hapcaller.combined.g.vcf.gz.tbi"; 
+	prov:wasDerivedFrom <VCF/gvcf.list> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+.
+
+<VCF/hapcaller.combined.g.vcf.gz>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-df1e815f-8dd4-4493-85b9-a26a8a2ca7ad>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_combine-ip> ;
+	rdfs:label "VCF/hapcaller.combined.g.vcf.gz"; 
+	prov:wasDerivedFrom <VCF/gvcf.list> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+.
+
+<http://snakemake-provenance#activity-2de11e77-c462-40d3-b93c-550eb2a65a20>
+	a prov:Activity ;
+	rdfs:comment """
+		gatk -Djava.io.tmpdir=VCF -XX:ParallelGCThreads=3 -Xmx3g -T GenotypeGVCFs 		-R ../testdata/human_g1k_v37.chr22.fasta 		--variant VCF/hapcaller.combined.g.vcf.gz 		-S SILENT 		-o VCF/hapcaller.genotyped.vcf.gz
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_unified_genotyper-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.685126"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.685156"^^xsd:dateTime; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:used <VCF/hapcaller.combined.g.vcf.gz> ; 
+	prov:used <gatkPresent.txt> ; 
+	prov:used <VCF/hapcaller.combined.g.vcf.gz.tbi> ; 
+.
+
+<VCF/hapcaller.genotyped.vcf.gz.tbi>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-2de11e77-c462-40d3-b93c-550eb2a65a20>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_unified_genotyper-ip> ;
+	rdfs:label "VCF/hapcaller.genotyped.vcf.gz.tbi"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.combined.g.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.combined.g.vcf.gz.tbi> ; 
+.
+
+<VCF/hapcaller.genotyped.vcf.gz>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-2de11e77-c462-40d3-b93c-550eb2a65a20>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_unified_genotyper-ip> ;
+	rdfs:label "VCF/hapcaller.genotyped.vcf.gz"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.combined.g.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.combined.g.vcf.gz.tbi> ; 
+.
+
+<http://snakemake-provenance#activity-b25534f0-ee06-4a8d-ae9d-e42bb80732b1>
+	a prov:Activity ;
+	rdfs:comment """
+		gatk -Djava.io.tmpdir=VCF -XX:ParallelGCThreads=3 -Xmx3g -T SelectVariants 		-R ../testdata/human_g1k_v37.chr22.fasta 		--logging_level FATAL 		-selectType INDEL 		--variant VCF/hapcaller.genotyped.vcf.gz 		-o VCF/hapcaller.indel.recal.select.vcf.gz
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_select-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.687628"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.687640"^^xsd:dateTime; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:used <VCF/hapcaller.genotyped.vcf.gz> ; 
+	prov:used <gatkPresent.txt> ; 
+	prov:used <VCF/hapcaller.genotyped.vcf.gz.tbi> ; 
+.
+
+<VCF/hapcaller.indel.recal.select.vcf.gz.tbi>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-b25534f0-ee06-4a8d-ae9d-e42bb80732b1>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_select-ip> ;
+	rdfs:label "VCF/hapcaller.indel.recal.select.vcf.gz.tbi"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.genotyped.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.genotyped.vcf.gz.tbi> ; 
+.
+
+<VCF/hapcaller.indel.recal.select.vcf.gz>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-b25534f0-ee06-4a8d-ae9d-e42bb80732b1>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_select-ip> ;
+	rdfs:label "VCF/hapcaller.indel.recal.select.vcf.gz"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.genotyped.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.genotyped.vcf.gz.tbi> ; 
+.
+
+<http://snakemake-provenance#activity-3b3476df-63c8-47c6-b7df-18a96b8ca4b9>
+	a prov:Activity ;
+	rdfs:comment """
+		gatk -Djava.io.tmpdir=VCF -XX:ParallelGCThreads=3 -Xmx3g -T SelectVariants 		-R ../testdata/human_g1k_v37.chr22.fasta 		--logging_level FATAL 		-selectType SNP 		--variant VCF/hapcaller.genotyped.vcf.gz 		-o VCF/hapcaller.snv.recal.select.vcf.gz
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_select-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.689630"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.689642"^^xsd:dateTime; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:used <VCF/hapcaller.genotyped.vcf.gz> ; 
+	prov:used <gatkPresent.txt> ; 
+	prov:used <VCF/hapcaller.genotyped.vcf.gz.tbi> ; 
+.
+
+<VCF/hapcaller.snv.recal.select.vcf.gz.tbi>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-3b3476df-63c8-47c6-b7df-18a96b8ca4b9>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_select-ip> ;
+	rdfs:label "VCF/hapcaller.snv.recal.select.vcf.gz.tbi"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.genotyped.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.genotyped.vcf.gz.tbi> ; 
+.
+
+<VCF/hapcaller.snv.recal.select.vcf.gz>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-3b3476df-63c8-47c6-b7df-18a96b8ca4b9>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_select-ip> ;
+	rdfs:label "VCF/hapcaller.snv.recal.select.vcf.gz"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.genotyped.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.genotyped.vcf.gz.tbi> ; 
+.
+
+<http://snakemake-provenance#activity-e42b45fa-7c20-461c-bf0f-9c97b4c6670a>
+	a prov:Activity ;
+	rdfs:comment """
+		gatk -Djava.io.tmpdir=VCF -XX:ParallelGCThreads=3 -Xmx3g -T VariantFiltration 		-R ../testdata/human_g1k_v37.chr22.fasta 		--logging_level FATAL  		--filterExpression 'QD < 2.0' --filterName 'FAILS_HARD_FILTER_SNP_QD' 		--filterExpression 'FS > 60.0' --filterName 'FAILS_HARD_FILTER_SNP_FS' 		--filterExpression 'MQ < 30.0' --filterName 'FAILS_HARD_FILTER_SNP_MQ' 		--filterExpression 'MQRankSum < -12.5' --filterName 'FAILS_HARD_FILTER_SNP_MQRankSum' 		--filterExpression 'ReadPosRankSum < -8.0' --filterName 'FAILS_HARD_FILTER_SNP_ReadPosRankSum' 		--variant VCF/hapcaller.snv.recal.select.vcf.gz 		-o VCF/hapcaller.snv.recal.filter.vcf.gz
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_filtration-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.691714"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.691725"^^xsd:dateTime; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:used <VCF/hapcaller.snv.recal.select.vcf.gz> ; 
+	prov:used <gatkPresent.txt> ; 
+	prov:used <VCF/hapcaller.snv.recal.select.vcf.gz.tbi> ; 
+.
+
+<VCF/hapcaller.snv.recal.filter.vcf.gz.tbi>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-e42b45fa-7c20-461c-bf0f-9c97b4c6670a>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_filtration-ip> ;
+	rdfs:label "VCF/hapcaller.snv.recal.filter.vcf.gz.tbi"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.snv.recal.select.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.snv.recal.select.vcf.gz.tbi> ; 
+.
+
+<VCF/hapcaller.snv.recal.filter.vcf.gz>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-e42b45fa-7c20-461c-bf0f-9c97b4c6670a>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_filtration-ip> ;
+	rdfs:label "VCF/hapcaller.snv.recal.filter.vcf.gz"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.snv.recal.select.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.snv.recal.select.vcf.gz.tbi> ; 
+.
+
+<http://snakemake-provenance#activity-3ecb4c10-dffd-4d1c-9e61-d438b84a874b>
+	a prov:Activity ;
+	rdfs:comment """
+		gatk -Djava.io.tmpdir=VCF -XX:ParallelGCThreads=3 -Xmx3g -T VariantFiltration 		-R ../testdata/human_g1k_v37.chr22.fasta 		--logging_level FATAL  		--filterExpression 'QD < 2.0' --filterName 'FAILS_HARD_FILTER_INDEL_QD' 		--filterExpression 'FS > 200.0' --filterName 'FAILS_HARD_FILTER_INDEL_FS' 		--filterExpression 'ReadPosRankSum < -20.0' --filterName 'FAILS_HARD_FILTER_INDEL_ReadPosRankSum' 		--filterExpression 'SOR > 10.0' --filterName 'FAILS_HARD_FILTER_INDEL_SOR' 		--variant VCF/hapcaller.indel.recal.select.vcf.gz 		-o VCF/hapcaller.indel.recal.filter.vcf.gz
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_filtration-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.693735"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.693745"^^xsd:dateTime; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:used <VCF/hapcaller.indel.recal.select.vcf.gz> ; 
+	prov:used <gatkPresent.txt> ; 
+	prov:used <VCF/hapcaller.indel.recal.select.vcf.gz.tbi> ; 
+.
+
+<VCF/hapcaller.indel.recal.filter.vcf.gz.tbi>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-3ecb4c10-dffd-4d1c-9e61-d438b84a874b>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_filtration-ip> ;
+	rdfs:label "VCF/hapcaller.indel.recal.filter.vcf.gz.tbi"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.indel.recal.select.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.indel.recal.select.vcf.gz.tbi> ; 
+.
+
+<VCF/hapcaller.indel.recal.filter.vcf.gz>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-3ecb4c10-dffd-4d1c-9e61-d438b84a874b>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_filtration-ip> ;
+	rdfs:label "VCF/hapcaller.indel.recal.filter.vcf.gz"; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.indel.recal.select.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.indel.recal.select.vcf.gz.tbi> ; 
+.
+
+<http://snakemake-provenance#activity-7a09a3bb-e940-4d70-b242-48ce8fca4dd9>
+	a prov:Activity ;
+	rdfs:comment """
+		gatk -Djava.io.tmpdir=VCF -XX:ParallelGCThreads=3 -Xmx3g -T CombineVariants 		-R ../testdata/human_g1k_v37.chr22.fasta 		--genotypemergeoption PRIORITIZE 		--rod_priority_list SNP,INDEL 		--variant:SNP VCF/hapcaller.snv.recal.filter.vcf.gz 		--variant:INDEL VCF/hapcaller.indel.recal.filter.vcf.gz 		-o VCF/hapcaller.recal.combined.vcf.gz
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_combine-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.696193"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.696204"^^xsd:dateTime; 
+	prov:used <VCF/hapcaller.indel.recal.filter.vcf.gz.tbi> ; 
+	prov:used <VCF/hapcaller.indel.recal.filter.vcf.gz> ; 
+	prov:used <VCF/hapcaller.snv.recal.filter.vcf.gz.tbi> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <VCF/hapcaller.snv.recal.filter.vcf.gz> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:used <gatkPresent.txt> ; 
+.
+
+<VCF/hapcaller.recal.combined.vcf.gz.tbi>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-7a09a3bb-e940-4d70-b242-48ce8fca4dd9>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_combine-ip> ;
+	rdfs:label "VCF/hapcaller.recal.combined.vcf.gz.tbi"; 
+	prov:wasDerivedFrom <VCF/hapcaller.indel.recal.filter.vcf.gz.tbi> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.indel.recal.filter.vcf.gz> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.snv.recal.filter.vcf.gz.tbi> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.snv.recal.filter.vcf.gz> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+.
+
+<VCF/hapcaller.recal.combined.vcf.gz>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-7a09a3bb-e940-4d70-b242-48ce8fca4dd9>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_combine-ip> ;
+	rdfs:label "VCF/hapcaller.recal.combined.vcf.gz"; 
+	prov:wasDerivedFrom <VCF/hapcaller.indel.recal.filter.vcf.gz.tbi> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.indel.recal.filter.vcf.gz> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.snv.recal.filter.vcf.gz.tbi> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.snv.recal.filter.vcf.gz> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+.
+
+<http://snakemake-provenance#activity-fcd2483e-6a4a-4c25-ac62-da88da13480e>
+	a prov:Activity ;
+	rdfs:comment """
+		gatk -Djava.io.tmpdir=VCF -XX:ParallelGCThreads=3 -Xmx3g -T VariantAnnotator 		-R ../testdata/human_g1k_v37.chr22.fasta 		--variant VCF/hapcaller.recal.combined.vcf.gz 		-L VCF/hapcaller.recal.combined.vcf.gz 		--resource:gnomad ../testdata/gnomad.exomes.r2.0.1.sites.chr22.lite.vcf.gz 		--resourceAlleleConcordance 		-E gnomad.AF_AMR 		-E gnomad.AF_NFE 		-E gnomad.AF_Female 		-E gnomad.AF_ASJ 		-E gnomad.AF_OTH 		-E gnomad.AF_EAS 		-E gnomad.AF_SAS 		-E gnomad.AF_FIN 		-E gnomad.AF_Male 		--dbsnp ../testdata/dbsnp_138.b37.chr22.recode.vcf.gz 		-o VCF/hapcaller.recal.combined.annot.gnomad.vcf.gz
+	""" ;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_annotator-ip> ;
+	prov:startedAtTime "2019-01-23T15:27:59.698471"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.698478"^^xsd:dateTime; 
+	prov:used <VCF/hapcaller.recal.combined.vcf.gz.tbi> ; 
+	prov:used <../testdata/dbsnp_138.b37.chr22.recode.vcf.gz> ; 
+	prov:used <../testdata/gnomad.exomes.r2.0.1.sites.chr22.lite.vcf.gz> ; 
+	prov:used <gatkPresent.txt> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:used <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:used <VCF/hapcaller.recal.combined.vcf.gz> ; 
+.
+
+<VCF/hapcaller.recal.combined.annot.gnomad.vcf.gz.tbi>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-fcd2483e-6a4a-4c25-ac62-da88da13480e>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_annotator-ip> ;
+	rdfs:label "VCF/hapcaller.recal.combined.annot.gnomad.vcf.gz.tbi"; 
+	prov:wasDerivedFrom <VCF/hapcaller.recal.combined.vcf.gz.tbi> ; 
+	prov:wasDerivedFrom <../testdata/dbsnp_138.b37.chr22.recode.vcf.gz> ; 
+	prov:wasDerivedFrom <../testdata/gnomad.exomes.r2.0.1.sites.chr22.lite.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.recal.combined.vcf.gz> ; 
+.
+
+<VCF/hapcaller.recal.combined.annot.gnomad.vcf.gz>
+	a prov:Entity;
+	prov:wasGeneratedBy <http://snakemake-provenance#activity-fcd2483e-6a4a-4c25-ac62-da88da13480e>;
+	prov:wasAssociatedWith <https://bio.tools/gatk2_variant_annotator-ip> ;
+	rdfs:label "VCF/hapcaller.recal.combined.annot.gnomad.vcf.gz"; 
+	prov:wasDerivedFrom <VCF/hapcaller.recal.combined.vcf.gz.tbi> ; 
+	prov:wasDerivedFrom <../testdata/dbsnp_138.b37.chr22.recode.vcf.gz> ; 
+	prov:wasDerivedFrom <../testdata/gnomad.exomes.r2.0.1.sites.chr22.lite.vcf.gz> ; 
+	prov:wasDerivedFrom <gatkPresent.txt> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.fasta> ; 
+	prov:wasDerivedFrom <../testdata/human_g1k_v37.chr22.dict> ; 
+	prov:wasDerivedFrom <VCF/hapcaller.recal.combined.vcf.gz> ; 
+.
+
+<http://snakemake-provenance#activity-7b26a289-3584-4b90-8826-70686faba8a7>
+	a prov:Activity ;
+	prov:wasAssociatedWith <#testPipeline> ;
+	prov:startedAtTime "2019-01-23T15:27:59.699757"^^xsd:dateTime;
+	prov:endedAtTime "2019-01-23T15:27:59.699769"^^xsd:dateTime; 
+	prov:used <VCF/hapcaller.recal.combined.annot.gnomad.vcf.gz> ; 
+	prov:used <VCF/hapcaller.recal.combined.annot.gnomad.vcf.gz.tbi> ; 
+.
+

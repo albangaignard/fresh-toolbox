@@ -10,7 +10,7 @@ All the process can be reproduced through the [![Binder](https://mybinder.org/ba
   - Khalid Belhajjame: kbelhajj@googlemail.com
 
 ### Approach
-![alt text](approach.pdf "Approach")
+![alt text](approach.png "Approach")
 Here are the main steps of this demonstration :
   1. Knowledge graph loading (With assume that a provenance is already available)
   1. Machine-oriented provenance mining queries
@@ -26,7 +26,7 @@ It was produced in the context of Rare Coding Variants in ANGPTL6 Are Associated
 ...
 ```
 
-![alt text](plot.pdf "Main processing steps associated to the workflow run")
+![alt text](plot.png "Main processing steps associated to the workflow run")
 
 ### Software dependencies
   - [RdfLib](https://rdflib.readthedocs.io/en/stable/) for RDF data management and SPARQL querying

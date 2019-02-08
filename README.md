@@ -21,8 +21,12 @@ Here is an example of the generated human-oriented data summaries.
 
 ```
 ...
-The file Samples/Sample1/BAM/Sample1.realign.bai results from tool gatk2_indel_realigner-IP which Locally align two or more molecular sequences.
-It was produced in the context of Rare Coding Variants in ANGPTL6 Are Associated with Familial Forms of Intracranial Aneurysm
+The file Samples/Sample1/BAM/Sample1.realign.bai results from 
+tool gatk2_indel_realigner-IP which Locally align two or more molecular 
+sequences.
+
+It was produced in the context of Rare Coding Variants in ANGPTL6 Are 
+Associated with Familial Forms of Intracranial Aneurysm
 ...
 ```
 

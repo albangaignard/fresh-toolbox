@@ -8,6 +8,9 @@ All the process can be reproduced through the [![Binder](https://mybinder.org/ba
   - Alban Gaignard: alban.gaignard@univ-nantes.fr
   - Hala Skaf-Molli: hala.skaf@univ-nantes.fr
   - Khalid Belhajjame: kbelhajj@googlemail.com
+  
+### Citation
+Alban Gaignard, Hala Skaf-Molli and Khalid Belhajjame Findable and Reusable Workflow DataProducts: A Genomic Workflow Case Study. Accepted at Semantic Web Journal 2020. [http://www.semantic-web-journal.net/content/findable-and-reusable-workflow-dataproducts-genomic-workflow-case-study](http://www.semantic-web-journal.net/content/findable-and-reusable-workflow-dataproducts-genomic-workflow-case-study)
 
 ### Approach
 ![alt text](approach.png "Approach")
